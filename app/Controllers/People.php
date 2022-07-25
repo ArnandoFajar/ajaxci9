@@ -42,7 +42,8 @@ class People extends BaseController
                 $ops
             );
         }
-        return $this->response->setJSON($data);
+        // return $this->response->setJSON($data);
+        return json_encode($data);
     }
 
     public function remove()

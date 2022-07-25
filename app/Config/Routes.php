@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\User;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -17,7 +19,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('People');
+$routes->setDefaultController('people');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -31,6 +33,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+$routes->group('user', function ($routes) {
+    $routes->get('/', 'User::index');
+    $routes->get('findAll', 'User::findAll');
+    $routes->post('getOne', 'User::getOne');
+    $routes->post('remove', 'User::remove');
+    $routes->post('save', 'User::save');
+    $routes->post('post', 'User::update');
+});
+
 $routes->get('/', 'People::index');
 $routes->get('findAll', 'People::findAll');
 $routes->post('remove', 'People::remove');
