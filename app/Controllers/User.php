@@ -69,7 +69,7 @@ class User extends BaseController
         }
 
         $data = [
-            'name' => esc($this->request->getVar("name")),
+            'name' => $this->request->getVar("name"),
             'phone' => esc($this->request->getVar('phone')),
             'email' => esc($this->request->getVar('email')),
             'country' => esc($this->request->getVar('country')),
@@ -132,8 +132,8 @@ class User extends BaseController
         }
         return json_encode($response);
     }
-    
-    public function delete(){
-        
+
+    public function delete()
+    {
     }
 }
